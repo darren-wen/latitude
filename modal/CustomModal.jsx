@@ -57,7 +57,7 @@ export type ModalProps = {|
    * Currently, we support "shouldCloseOnEsc" and "shouldCloseOnOverlayClick", which are disabled by default.
    */
   +closeOptions?: CloseOptions,
-  /** defines the style object of the holding container that appears on the black overlay */
+  /** Defines the style object of the black overlay */
   +overlayClassName?: string,
   /**
    * Defines the style object of the holding container that appears on the black overlay.
@@ -186,7 +186,7 @@ class CustomModal extends React.PureComponent<CombinedProps> {
       : undefined;
     return (
       <ModalComponent
-        overlayClassName={this.props.overlayClassName || css(styles.overlay)}
+        overlayClassName={this.props.overlayClassName || css(defaultModalStyles.overlay)}
         closeTimeoutMS={450}
         isOpen={this.isVisible()}
         className={this.props.className}
@@ -209,6 +209,17 @@ class CustomModal extends React.PureComponent<CombinedProps> {
 // they have a lot of the defaults you probably want to use
 // such as centering, margin from top, etc.
 export const defaultModalStyles = StyleSheet.create({
+  overlay: {
+    zIndex: 1049, // ModalStore renders its modals with z-index 1050, we don't want to cover up error modals.
+    display: "block",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    position: "fixed",
+    top: "0px",
+    bottom: "0px",
+    left: "0px",
+    right: "0px",
+    overflow: "auto",
+  },
   content: {
     boxShadow: "0 3px 9px rgba(0,0,0,0.5)",
     marginLeft: "auto",
@@ -230,20 +241,6 @@ export const defaultModalStyles = StyleSheet.create({
     marginRight: "auto",
     marginTop: "80px",
     outline: "none",
-  },
-});
-
-const styles = StyleSheet.create({
-  overlay: {
-    zIndex: 1049, // ModalStore renders its modals with z-index 1050, we don't want to cover up error modals.
-    display: "block",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    position: "fixed",
-    top: "0px",
-    bottom: "0px",
-    left: "0px",
-    right: "0px",
-    overflow: "auto",
   },
 });
 
