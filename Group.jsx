@@ -13,15 +13,15 @@ type Props = {|
   /** Children can be any React.Node and will be distributed based on the other props */
   +children?: React.Node,
   /** The gap between elements. (0, 1, 2, 4n) */
-  +gap: number,
+  +gap?: number,
   /** Applies `flex: 1` to every child which provides an even distribution of elements in horizontal layouts. */
-  +fillChildren: boolean,
+  +fillChildren?: boolean,
   /** Sets whether flex items are forced onto one line or can wrap onto multiple lines. If wrapping is allowed, it sets the direction that lines are stacked. */
-  +flexWrap: "nowrap" | "wrap" | "wrap-reverse",
+  +flexWrap?: "nowrap" | "wrap" | "wrap-reverse",
   /** Sets how flex items are placed in the flex container defining the main axis and the direction (normal or reversed). */
-  +flexDirection: "row" | "row-reverse" | "column" | "column-reverse",
+  +flexDirection?: "row" | "row-reverse" | "column" | "column-reverse",
   /** Defines how the browser distributes space between and around content items along the main-axis of a flex container, and the inline axis of a grid container. */
-  +justifyContent:
+  +justifyContent?:
     | "center"
     | "start"
     | "end"
@@ -37,7 +37,7 @@ type Props = {|
     | "safe center"
     | "unsafe center",
   /** Controls the alignment of items on the Cross Axis. */
-  +alignItems:
+  +alignItems?:
     | "normal"
     | "stretch"
     | "center"
@@ -52,7 +52,7 @@ type Props = {|
     | "last baseline"
     | "safe center"
     | "unsafe center",
-  +containerFlex: number | "none",
+  +containerFlex?: number | "none",
 |};
 
 const defaultProps = {
